@@ -4,6 +4,12 @@
 \usepackage{upquote}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage[%
+    left=0.50in,%
+    right=0.50in,%
+    top=1.0in,%
+    bottom=1.0in%
+]{geometry}%
 \renewcommand{\baselinestretch}{1.5}
 
 \begin{document}
@@ -380,7 +386,7 @@ Célja a megfelelő – vagyis a sokaság egészének paramétereit legjobban t�
 $$L(m, p; x) = \prod_{k=1}^n \displaystyle{\left({m \atop x_k}\right)}p^{x_k}(1-p)^{m-x_k} \quad (x_k = 0, 1, ..., m)$$
 $$\ln L(m, p; x) = \sum^n_{k=1} \ln \left ({m \atop x_k}\right) + \ln p \sum^n_{k=1} x_k + \ln(1-p) \sum^n_{k=1}(m-x_k)$$
 $$(\ln L(m,p;x))^{'}_p = \frac{1}{p} \sum^n_{k=1}x_k + \frac{1}{1-p} \sum^n_{k=1} (m - x_k) = \frac{1}{p} \sum^n_{k=1}x_k + \frac{1}{1-p}
-\left(nm- \sum^n_{k=1}x_k \right) = \frac{1}{p}n\overline{x} + \frac{1}{1-p}(nm-n\overline{x}$$
+\left(nm- \sum^n_{k=1}x_k \right) = \frac{1}{p}n\overline{x} + \frac{1}{1-p}(nm-n\overline{x})$$
 
 Átrendezve a $(\ln L(m,p;x))^{'}_p = 0$ egyenletet, kapjuk, hogy $\hat{p} = \frac{\overline{X}}{m}$.  Ez valóban maximum, mivel $(\ln L(m,p;x))^{''}_p$-t kiértékelve a $\hat{p}$ helyen $(\ln L(m,p;x))^{''}_p = \frac{-n \overline{x}}{p^2} + \frac{-n(m-\overline{x})}{(1-p)^2}=
 -n\left(\frac{\overline{x}}{p^2}+\frac{m - \overline{x}}{(1-p)^2}\right)<0$.
