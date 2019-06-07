@@ -1,6 +1,7 @@
 \documentclass[12p]{article}
 \setlength{\parindent}{0em}
-\usepackage{amsmath}
+\usepackage{amsmath, mathrsfs, listings}
+\usepackage{upquote}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \renewcommand{\baselinestretch}{1.5}
@@ -12,6 +13,10 @@
 (2) Legyen X standard normális eloszlású valószínűségi változó. Számítsa ki az X várható értékét! 
 
 (3) Mondja ki Bayes tételét. (3x)
+
+Legyen B1, B2, ..., pozitív valószínűségű eseményekből álló teljes eseményrendszer, A $\in$ $\mathscr{A}$ pozitív valószínűségű. Ekkor
+
+$$\displaystyle{P(B_k|A) = \frac{P(A|B_k)P(B_k)}{\displaystyle{\sum_i} P(A|B_i)P(B_i)}}$$
 
 (4) Igazolja, hogy független azonos paraméterű binomiális eloszlású valószínűségi változók összege is ilyen
 
@@ -129,13 +134,18 @@
 
 (61) Mondja ki abszolút folytonos valószínűségi változók függetlenségének ekvivalens jellemzőit.
 
-(62) Definiálja valószínűségi változók eloszlását
+(62) Definiálja valószínűségi változók eloszlását.
 
 (63) Mit jelent a valószínűség folytonossága?
 
 (64) Definiálja n valószínűségi változó függetlenségét.
 
+ Az $X_1,...,X_n$ valószínűségi változók függetlenek, ha az $\mathscr{F}_{X1}, \mathscr{F}_{X2} ,...,\mathscr{F}_{X_n}$ generált $\sigma$-algebrák függetlenek.
+
 (65) Definiálja diszkrét valószínűségi változók együttes eloszlását!
+
+az X diszkrét valószínűségi változó, ha értékkészlete $(x_1 ,..., x_n...)$ legfeljebb megszámlálható.\\
+A valószínűségi változó definíciójából adódóan $\{\omega:X(\omega)= x_i\}=\{X=x_i\}= \in \mathscr{A}$ azaz $p_i:=P$ $(X=x_i)$értelmes. Ezek meg is határozzák X eloszlását.
 
 (66) Definiálja a t eloszlást!
 
@@ -258,7 +268,9 @@ legyenek a megadott számokon! Függetlenek-e ezek a változók? Számolja ki az
 
 (116) Definiálja két esemény függetlenségét!
 
-(117)  Számítsa ki két kockadobás maximumának a várható értékét.
+Az A és B események függetlenek, ha $P(A \cap B) = P(A)P(B)$.
+
+(117) Számítsa ki két kockadobás maximumának a várható értékét.
 
 (118) Definiálja az első- és másodfajú hiba fogalmát, valamint próbák konzisztenciáját.
 
@@ -270,89 +282,256 @@ indokolja!
 (121) Legyen a mintaelemek sűrűségfüggvénye $f(x) = (\theta + 1)x^{\theta}$ ha $0 < x < 1$ ($\theta \geq$ 0 a par.).
 Egy mintaelem alapján határozzuk meg az $\alpha = 0.05$ terjedelmű valószínűséghányadospróbát a $H_0 : \theta = 0, H_1 : \theta = 1$ hipotézisekre!
 
-(122) Ismertesse a lineáris regresszió együtthatóira vonatkozó próbák lényegét!
+(122) Ismertesse a lineáris regresszió együtthatóira vonatkozó próbák lényegét! (2x)
 
-(123) Adott n elemű minta az alábbi eloszlásból: $P(Z = 1) = c$, $P(Z = 2) = 2c$, $P(Z = 3) = 1 - 3c$ ($0 < c < 1/3$ az ismeretlen paraméter). Határozza meg a paraméter maximum
-likelihood becslését!
+??
+
+(123) Adott n elemű minta az alábbi eloszlásból: $P(Z = 1) = c$, $P(Z = 2) = 2c$, $P(Z = 3) = 1 - 3c$ ($0 < c < 1/3$ az ismeretlen paraméter). Határozza meg a paraméter maximum likelihood becslését!
 
 (124) Számítsa ki két kockadobás minimumának a várható értékét.
 
 (125) Írja fel a Csebisev egyenlőtlenséget, és vázolja a bizonyítását.
 
+Legyen X tetszőleges valószínűségi változó, melyre $D^2X < \infty$ és $\mathcal{E} > 0$ tetszőleges. Ekkor
+
+$$P(|X - EX| \geq \mathcal{E}) \leq \frac{D^X}{\mathcal{E}^2}$$
+
+Bizonyítás:
+
+???
+
 (126) Legyen X 5 várható értékű Poisson eloszlású, Y pedig az X = 5 esemény indikátora. Számítsa ki Y várható értékét és szórását!
 
-(127) Adjon példát olyan maximum likelihood becslésre, mely nem torzítatlan
+(127) Adjon példát olyan maximum likelihood becslésre, mely nem torzítatlan.
+
+pl. a normális eloszlás szórásnégyzetére kapott becslés ilyen
 
 (128) Adja meg a Wilcoxon-próba hipotéziseit, a próbastatisztikát és a kritikus tartományt.
 Mikor alkalmazná ezt a próbát? (2x)
 
+???
+
 (129) Adjon meg két módszert integrálok szimulációval történő kiszámítására! Hasonlítsa is
 össze őket!
 
+\begin{itemize}
+\item Integrálok közelítése
+\item Bootstrap
+\end{itemize}
+
+Az első eljárás is torzítatlan és szórásnégyzete $(E(g^2(X)) - I^2) / N$, amib[l kisebb szórás adódik.\\
+Tovább is javítható, ha X az [a,b]-ra koncentrálódó f sűrűségfüggvényű eloszlásból származik:
+$$\int^b_a g(x)dx = \int^a_b \frac{g(x)}{f(x)} f(x)dx = E (\frac{g(X)}{f(X)})$$
+és ennek még kisebb a szórása, ha $f(X) \approx g(X)$\\
+Tehát g(X)/f(X) szimulált értékeinek átlaga jó közelítés\\
+Az is előnye, hogy improprius integrálokra is alkalmazható (ha pl. f a normális eloszlás)
+
+
 (130) Definiálja a 2 mintás t-próbát és vezesse le a próbastatisztika képletét!
 
-(131)  Ismertesse a lineáris regresszió együtthatóira vonatkozó próbák lényegét!
+$$t = \sqrt{\frac{nm}{n+m}}\frac{\overline{X} - \overline{Y}}{\sqrt{\frac{(n-1)(s^*_1)^2 + (m-1)(s^*_2)^2}{n+m-2}}} \stackrel{H_0 eseten}{\sim}
+t_{n+m-2}$$
 
-(132) Vezesse le a normális eloszlás várható értékére a maximum likelihood becslést n
-mintaelem alapján!
+(131) -
+
+(132) Vezesse le a normális eloszlás várható értékére a maximum likelihood becslést n mintaelem alapján!
 
 (133) Írja fel, az X diszkrét valószínűségi változó várható értékének definícióját és sorolja fel
 a várható érték legfontosabb tulajdonságait!
 
 (134) Legyen $\Omega = {1, 2, 3, 4, 5, 6}$, $P(i) = 1/6 (1 \leq i \leq 6)$ és $A = {1, 2, 3}$. Adon meg olyan B
-eseményt, amire $0 < P(B) < 1$ és B és A függetlenek! Válaszát indokolja
+eseményt, amire $0 < P(B) < 1$ és B és A függetlenek! Válaszát indokolja.
+
+ Például $B = \{3, 4\}$, mert ekkor $P(A \cap B) = 1/6$ és $P(A)P(B) = \frac{1}{2} * \frac{1}{3}$, tehát egyenlőek, azaz a két esemény független.
 
 (135) Tegyük fel, hogy az X valószínűségi változó sűrűségfüggvénye $f(x) = 2(1-x)$ ha $0 < x < 1$ és 0 különben. E(X) =? 
 
+$$EX = \int^1_0 xf(x)dx = ... = 1/3$$
+
 (136) Legyen az X valószínűségi változó eloszlása $P(X = k) = (5 - k)/15$, $ha 0 \leq k \leq 4$. $D^2(X)$ = ?
+
+$D^2(X) = E(X^2) - E^2(X)$,$E(X) = 1 * \frac{4}{15} + 2 * \frac{3}{15} + 3 * \frac{2}{15} + 4 * \frac{1}{15} = \frac{20}{15}$.\\
+$E(X^2) = 1 * \frac{4}{15} + 4 * \frac{3}{15} + 9 * \frac{2}{15} + 16 * \frac{1}{15}$.
 
 (137) Mondja ki a nagy számok Bernoulli-féle törvényét!
 
+A nagy számok törvényének legelső verzióját
+még Bernoulli bizonyította,
+indikátorváltozókra: eszerint azonos
+körülmények között elvégzett független
+kísérleteknél tetszőleges esemény relatív
+gyakorisága tart az esemény
+valószínűségéhez.
+
 (138) Definiálja egy valószínűségi változó mediánját.
+
+Az x valószínűségi változó mediánját $\overline{x}$ vagy $\mu_{1/2}(x)$ jelöli.
+Páratlan elemszám esetén a középső elem, páros elemszám esetén a két középső elem átalaga.
 
 (139) Mi a lényeges különbség a leíró és a matematikai statisztika között?
 
+Leíró:\\
+Célja egy már rendelkezésre álló, valóságra vonatkozó adathalmaz összefoglalása, elemzése, egyszóval az információtömörítés.\\
+Matematikai:\\
+Célja a megfelelő – vagyis a sokaság egészének paramétereit legjobban tükröző, reprezentáló – minta kiválasztása, a sokasági paramétereknek a minta paramétereivel történő becslése, illetve a sokasági paraméterekre vonatkozó feltételezések, hipotézisek elfogadása vagy elvetése. Foglalkozik továbbá a valóság összefüggéseinek egyszerűsített megragadására törekvő modellekkel is, mint az idősor- és regressziós modellek.
+
 (140) Vezesse le a maximum likelihood becslést a binomiális eloszlás p paraméterére (az n paramétert tekintsük ismertnek)!
+
+$$L(m, p; x) = \prod_{k=1}^n \displaystyle{\left({m \atop x_k}\right)}p^{x_k}(1-p)^{m-x_k} \quad (x_k = 0, 1, ..., m)$$
+$$\ln L(m, p; x) = \sum^n_{k=1} \ln \left ({m \atop x_k}\right) + \ln p \sum^n_{k=1} x_k + \ln(1-p) \sum^n_{k=1}(m-x_k)$$
+$$(\ln L(m,p;x))^{'}_p = \frac{1}{p} \sum^n_{k=1}x_k + \frac{1}{1-p} \sum^n_{k=1} (m - x_k) = \frac{1}{p} \sum^n_{k=1}x_k + \frac{1}{1-p}
+\left(nm- \sum^n_{k=1}x_k \right) = \frac{1}{p}n\overline{x} + \frac{1}{1-p}(nm-n\overline{x}$$
+
+Átrendezve a $(\ln L(m,p;x))^{'}_p = 0$ egyenletet, kapjuk, hogy $\hat{p} = \frac{\overline{X}}{m}$.  Ez valóban maximum, mivel $(\ln L(m,p;x))^{''}_p$-t kiértékelve a $\hat{p}$ helyen $(\ln L(m,p;x))^{''}_p = \frac{-n \overline{x}}{p^2} + \frac{-n(m-\overline{x})}{(1-p)^2}=
+-n\left(\frac{\overline{x}}{p^2}+\frac{m - \overline{x}}{(1-p)^2}\right)<0$.
 
 (141) Definiálja a hipotézisvizsgálat alapfogalmait!
 
+Hipotézis: állítás, aminek igazságát vizsgálni szeretnénk
+Statisztikai próba: eljárás, aminek a segítségével döntést hozhatunk a hipotézisről
+Nullhipotézis: $H_0 : \theta \in \Theta$\\
+Ellenhipotézis: $H_1 : \theta \in \Theta$\\
+Paramétertér: $\Theta = \Theta_0 \cup \Theta_1$\\
+Mintater: $\chi = \chi_e \cup \chi_k$\\
+$\chi_k$: kritikus tartomány - azon X megfigyelések halmaza, amikre elutasítjuk a nullhipotézist\\
+$\chi_e$: elfogadási tartomány - azon X megfigyelések halmaza, amikre elfogadjuk a nullhipotézist\\
+A $\chi$ mintatér felosztását egy $T : X \rightarrow R$ statisztika (neve: próbastatisztika) segítségével végezzük el\\
+P(elsőfajú hiba) = $\alpha(\theta) = P_\theta$ (elvetjük $H_0$-t $|$ $H_0$ igaz)\\
+Terjedelem: $\alpha = sup\{\alpha(\theta) : \theta \in \Theta_0\}$\\
+P(másodfajú hiba) = $\beta(\theta) = P_\theta$ (elfogadjuk $H_0$-t $|$ $H_0$ hamis)\\
+Erőfüggvény: $\Psi(\theta) = 1 - \beta(\theta) = P_\theta$ (elvetjük $H_0$-t $|$ $H_0$ hamis)
+
 (142)  Definiálja az u-próbát az egy- és kétmintás esetre is.
+
+Egymintas
+
+$$T(X) = u = \frac{\overline{X} - m_0}{\frac{\sigma}{\sqrt{n}}} \stackrel{H_0 eseten}{\sim} N(0, 1)$$
+
+Kritikus tartomany
+
+$$\chi_k = \{X: |u| > u_{1-\frac{\sigma}{2}}\}$$
+$$\chi_k = \{X: u > u_{1-\alpha}\}$$
+$$\chi_k = \{X: u < u_\alpha\}$$
+
+Ketmintas
+
+$$\displaystyle{u = \frac{\overline{X} - \overline{Y}}{\sqrt{\frac{\sigma_1^2}{n} + \frac{\sigma_2^2}{m}}}}$$
 
 (143) Mi a hasonlóság és mi a különbség az előjel- és a Wilcoxon próba között?
 
+EZ MI A FASZ?
+
 (144) Adjon módszert arra, hogyan szimulálna véletlen számot a sin(x) $(0 < x < \pi/2)$ sűrűségfüggvényű eloszlásból!
+
+??
 
 (145) Definiálja a korrelogrammot és adjon módszert, hogyan lehet ennek segítségével tesztelni
 az autokorrelációk szignifikanciáját.
 
+A korrelogram a korrelációs statisztikát megjelenítő diagram. Az idősor analízis, másnéven az autokorrelációs diagram az autokorreláció $r_h$ és a $h$ (timelag) megjelenítése.
+
+A statisztikai próba hipotétisei:
+
+$$H_0 : p_k = 0$$
+\[
+	\text{és}
+\]
+$$H_1 : p_k \neq 0$$
+
+Könnyen ellenőrizhető, hogy a normális eloszlással való közelítés megfelelő
+lesz, így a próbastatisztika
+
+$$\frac{\hat{p}_k}{1/\sqrt{T}} \sim N(0,1) $$
+
+Elfogadási tartomány:
+
+$$[-z_{1-\alpha/2},z_{1-\alpha/2}]$$
+
+A korrelogram ábrájáról könnyen leolvasható, hogy a kapott autokorrelációs
+értékek ebbe a sávba esnek-e, vagy sem.
+
 (146) Definiálja valószínűségi változók általános fogalmát.
+
+$X : \Omega \rightarrow R$ függvény valószínűségi változó, ha $\{\omega: X(\omega) \in B\} \in \mathscr{A}$ minden $B$ Borel halmazra $(X: \Omega \rightarrow R$ Borel mérhető függvény).
+Ha $\mathscr{A} = \mathscr{P}(\Omega)$, akkor minden $\Omega \rightarrow R$ függvény valószínűségi változó.
+
 
 (147) Definiálja n darab esemény függetlenségét.
 
+Az $A_1,A_2, ..., A_n$ eseményeket teljesen függetleneknek (röviden függetleneknek) nevezünk, ha az ${1, 2, ..., n}$ index halmaz bármely ${i, j, ..., k}$ részhalmazára
+
+$$P(A_i \cap A_j \cap ... \cap A_k) = P(A_i)P(A_j)...P(A_k)$$
+
 (148) Mutassa meg, hogy a peremeloszlások nem határozzák meg az együttest!
+
+Például legyen X egy érmedobás eredménye, Y pedig egy másik, független érmedobás eredménye. Ekkor (X, Y) peremeloszlásai ugyanazok mint (X, X) peremeloszlásai, de az együttes eloszlások különböznek.
 
 (149) Adjon példát korrelálatlan de nem független valószínűségi változó-párra!
 
+Például a 148. példabeli X, Y -ra X + Y és X - Y ilyen.
+
 (150) Legyen az X eloszlása a következő: $P(X = k) = k/6$, ha $k = 1, 2, 3$. Számolja ki $E(X)$ és $E(X^2)$ értékét!
+
+$E(X) = 7/3$, $E(X^2) = 6$.
 
 (151) Mondja ki a centrális határeloszlás tételt! Hol használtuk a statisztikában?
 
+Legyenek $X_1 , X_2 ,..., X_n ,...$ független, azonos eloszlású valószínűségi változók. Tegyük fel, hogy $D^2(X) = \sigma^2 < \infty$ véges $(m:=E(Xi))$. Tekintsük a standardizált összegüket:
+
+$$Z_n = \frac{X_1 + ... + X_n -nm}{\sqrt{n}\sigma}$$
+
+Ekkor $Z_n$ gyengén konvergál a standard normális eloszláshoz,
+azaz
+
+$$P(\frac{X_1 + ... + X_n - nm}{\sqrt{n}\sigma} < z) \rightarrow \Phi(z)$$
+
+ahol $\Phi$ a standard normális eloszlás eloszlásfüggvénye.
+
 (152) Hasonlítsa össze a várható érték tesztelésre vonatkozó próbákat!
+
+Az u és a t próba is normális eloszlású mintákra alkalmazható, mindegyik konzisztens és torzítatlan, az egyoldali próbák legerősebb próbák is. Ha $n \rightarrow \infty$ akkor a tpróba átmegy az u próbába
 
 (153) Tegyük fel, hogy a mintánk megfigyelt értékei: 0, 0, 2, 2 és azt is, hogy közelíthetőek 1 szórású normális eloszlással. Írjon fel 0.95 megbízhatóságú konfidencia intervallumot a
 várható értékre!
 
-(154) Definiálja a $\chi$-négyzet próbát és adja meg legfontosabb alkalmazásait
+(154) Definiálja a $\chi$-négyzet próbát és adja meg legfontosabb alkalmazásait.
+
+H0 hipotézis: az $A_1, A_2, ..., A_r$ teljes eseményrendszerre teljesül $P(A_1)=p_1$, $P(A_2)=p_2$, ...,$P(A_r)=p_r$.\\
+Tesztstatisztika: $\displaystyle{ \sum^r_{i=1} \frac{(v_i - np_i)^2}{np_i}}$\\
+ami aszimptotikusan r-1 szabadságfokú $\chi$-négyzet eloszlású, ha igaz a nullhipotézis. 
+
+\begin{itemize}
+	\item Diszkrét illeszkedésvizsgálat
+	\item Függetlenségvizsgálat
+	\item Homogenitásvizsgála
+	\item Egyszerű lineáris regresszió
+\end{itemize}
 
 (155) Egy faktor hatását vizsgáljuk. Az alacsony szinten 4 mérésünk volt: 8, 7, 11, 10. A felső
 szinten az eredmények: 5,7,3,9. Hogyan vizsgálnánk a hatás szignifikanciáját? Adjuk meg
 a próbastatisztika értékét.
 
-(156) Melyik konstans közelíti az $X$ változót a legkisebb négyzetes hibával? Válaszát indokolja
+(156) Melyik konstans közelíti az $X$ változót a legkisebb négyzetes hibával? Válaszát indokolja!
+
+$$??$$
 
 (157)  Irja le a Monte Carlo módszerek lényegét és adjon példát alkalmazásukra
 
+\begin{itemize}
+	\item Véletlen szám generátorok
+	\item Szimulációk
+	\subitem Integrálok közelítése
+	\subitem Bootstrap
+	\item Markov láncokon alapuló algoritmusok
+\end{itemize}
+
+Példa: LCG: $X_{n+1} = (aX_n + c)$ mod m
+
 (158) Definiálja a gyengén stacionárius idősorokat és adjon rá egy példát!
+
+Gyenge stacionaritás: a kovariancia-struktúra állandó
+
+Az ($Y_t$) idősor gyenge értelemben stacionárius, ha első- és második momentuma eltolásinvariáns, azaz $EY_t = m$ minden $t$ esetén, és $\gamma(t,s) = Cov(Y_t, Y_s) = \gamma(t - s)$ bármely t,s pár esetén.
 
 (159) Legyen az X valószínűségi változó sűrűségfüggvénye $f(x) = 2(3 - x)/9$ ha $0 < x < 3$ (és 0 különben). $E(X)$ =?, $D^2(X)$ =? 
 
@@ -362,25 +541,99 @@ lap). Írja fel X, Y együttes eloszlását!
 
 (161) Definiálja a feltételes valószínűséget!
 
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
+
+ha $P(B) \neq 0$
+
 (162) Mondja ki a teljes valószínűség tételét!
+
+Legyen B1, B2, ..., pozitív valószínűségű eseményekből álló teljes eseményrendszer, A $\in$ $\mathscr{A}$ tetszőleges. Ekkor
+$$P(A) = P(A|B_1)P(B1)+P(A|B_2)P(B2)+ ...$$
+
 
 (163) Irja le a Parzen-Rosenblatt módszert és tulajdonságait.
 
+Tapasztalati eloszlásfüggvény nem deriválható, de ezen segíthetünk, ha az egyes megfigyeléseket nem pontszerűnek, hanem az adott érték körüli kicsi szórású folytonos eloszlásúnak képzeljük (ez az eloszlás a magfüggvény).\\
+Ennek a folytonos keverékeloszlásnak a deriváltja jól közelíti a sűrűségfüggvényt.\\
+Tétel. Ha a mintánk egy $f(x)$ sűrűségfüggvényű
+eloszlásból származik, a $k(y)$ magfüggvény
+egyenletesen korlátos és $yk(y)$ határértéke a
+végtelenben 0, valamint $h_n$ olyan számsorozat,
+melyre $\lim h_n = 0$ és $\lim nh_n = \infty$, akkor
+$$f_n(x) = \frac{1}{nh_n} \sum^{n}_{i=1}k\left(\frac{x-X_i}{h_n}\right)$$ 
+aszimptotikusan torzítatlan, konzisztens becslés az f(x) minden folytonossági pontjában.
+
 (164) Adja meg valószínűségi változók függetlenségének karakterizációit!
+
+Ha \underline{X} koordinátái függetlenek, akkor definíció szerint\\
+$F_X(z)=P(X_1<z_1, X_2< z_2,..., X_d<z_d)=F_1(z_1)F_2(z_2)...F_d(z_d)$ (minden z $\in$ $R^d$–re).\\
+Meg is fordítható: F szorzatelőállításából következik a függetlenség\\
+Deriválva: a függetlenség abszolút folytonos változókra ekvivalens a sűrűségfüggvény 
+$f_X(z)=f_1(z_1)f_2(z_2)...f_d(z_d)$ alakú előállításával is.
 
 (165) Definiálja a QQ plot diagramot! Mikor használjuk?
 
+A megfigyelt és az illesztett eloszlás kétdimenziós ábrázolása. Eloszlásfüggvény q-kvantilise: az az érték, amelynél q valószínűséggel kapunk kisebbet: $G^{-1}(q)$.\\
+Eloszlás illeszkedésének vizsgálatára használjuk.
+
 (166) Mit jelent a becsléses illeszkedésvizsgálat és hogyan alkalmazzuk rá a $\chi$-négyzet próbát?
+
+Legyen $\theta$ egy $s$ dimenziós paramétervektor, valamint legyen $\hat{\theta}$ a $\theta$ paramétervektor MLbecslése, és legyen $\hat{p}_j$ = $p_j (\hat{\theta}$)\\
+$H_0$ : $P(X_i = x_j)$ = $\hat{p}_j$ $j = 1,. . . , r$\\
+$H_1$ : $\exists$ legalább egy $j$ melyre $P(X_i = x_j)$ $\neq$ $\hat{p}_j$\\
+Probastatisztika: $T_n = \displaystyle{\sum_{j=1}^{r}}\frac{(v_j - n\hat{p}_j)^2}{n\hat{p}_j}$ $\stackrel{H_0 eseten}{\sim}$ $\chi^2_{r-s-1}$\\
+Kritikus tartomány: $\chi_k$ = $\{x: T_n(x) > \chi^2_{r-s-1,1-\alpha}\}$\\
+$T_n = n * \frac{(v_{11}v_{22} - v_{12}v_{21})^2}{v_1 * v_2 * v_1 * v_2}$ $\stackrel{H_0 eseten}{\sim}$ $\chi^2_1$.
+
+
 
 (167) Milyen modern módszerekkel tudjuk a statisztikai eljárásokat a big data esetére alkalmazni?
 
-(168) Irja le a tanult, Neumann-féle módszert véletlen számok generálására!
+\begin{itemize}
+\item Részek elemzése, összesítése
+\item Véletlen részminták vizsgálata
+\item Mesterséges intelligencia
+\end{itemize}
 
-(169) Mi a szóráselemzés lényege?
+
+(168) Irja le a tanult, Neumann-féle módszert véletlen számok generálására!\\
+Legyen f(x) tetszőleges sűrűségfüggvény, $g(x)$ pedig olyan sűrűségfüggvény, amelyre $f(x) < Mg(x)$, valamely $M>1$ esetén és $g(x)$-ből könnyen tudunk mintát venni (tipikus példa az egyenletes eloszlás).
+
+(169) Mi a szóráselemzés lényege?\\
+Egy vagy több faktor különböző „szintjein” mérünk eredményeket (pl. termésátlagokat)
 
 
+(170) Mit vizsgáltunk? Értékelje a kapott eredményeket! Mi az "Intercept" és a "t" szemléletes
+jelentése? Egészítse ki a táblázatot a hiányzó értékekkel!
 
+\begin{verbatim}
 
+	homb<-read.table("e:\\oktatas\\hom\\nyir-51-88m.hom")
+	r=c(0:37); atl<-rep(0,times=30)
+	for (i in 1:30) atl[i]=mean(homb[365*r+243+i,1])
+	t<-c(1:30);lm1=lm(atl~t);summary(lm1)
+	
+\end{verbatim}
+\begin{verbatim}
+Az eredmeny:
+Residuals:
+Min 1Q Median 3Q Max
+-0.78002 -0.23031 -0.01675 0.19913 0.78953
+Coefficients:
+Estimate Std. Error t value Pr(>|t|)
+(Intercept) 18.682815 0.150876 ...... <2e-16 ***
+t -0.197392 0.008499 -23.23 ..........
+Residual standard error: 0.4029 on 28 degrees of freedom
+Multiple R-squared: 0.9507, Adjusted R-squared: 0.9489
+F-statistic: 539.5 on 1 and 28 DF, p-value: .....
+\end{verbatim}
+
+Minden ilyen feladatnál a statisztikai tartalom a lényeg. Azaz itt az lm függvény: ez
+lineáris regressziót számol, melyben az atl (szeptemberben a napi középhőmérsékletek) értékét közelíti a t (nap sorszáma) lineáris függvényével. A modell jónak tűnik (R
+2 = 0.95). Az
+intercept a konstans tag (a szept 0-ára becsült átlaghő mérséklet), a t az egyes együtthatók
+szignifikanciáját vizsgáló t-próba statisztika értéke. A pontok helyére rendre $18.68/0.15, < 2e - 16 ***,
+< 2e - 16$ irandó
 
 
 
