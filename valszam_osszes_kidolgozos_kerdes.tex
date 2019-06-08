@@ -1,7 +1,7 @@
 \documentclass[12p]{article}
 \setlength{\parindent}{0em}
 \usepackage{amsmath, mathrsfs, listings}
-\usepackage{upquote}
+\usepackage{upquote, amssymb}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[%
@@ -24,13 +24,26 @@ Legyen B1, B2, ..., pozitív valószínűségű eseményekből álló teljes ese
 
 $$\displaystyle{P(B_k|A) = \frac{P(A|B_k)P(B_k)}{\displaystyle{\sum_i} P(A|B_i)P(B_i)}}$$
 
-(4) Igazolja, hogy független azonos paraméterű binomiális eloszlású valószínűségi változók összege is ilyen
+(4) Igazolja, hogy független azonos paraméterű binomiális eloszlású valószínűségi változók összege is ilyen.
 
-(5) Írja fel az X és Y együttes eloszlásfüggvénye és az X perem eloszlásfüggvénye között fennálló kapcsolatot
+(5) Írja fel az X és Y együttes eloszlásfüggvénye és az X perem eloszlásfüggvénye között fennálló kapcsolatot.
 
 (6)  Definiálja a szórásnégyzetet és mondja ki legfontosabb tulajdonságait. (3x)
 
+$$D^2X = E[(X - EX)]^2 = EX^2 - E^2X$$
+
+Tulajdonságok:
+
+\begin{itemize}
+	\item $\sigma \geq 0$
+	\item $\sigma = 0$ csak akkor teljesül, ha minden ismérvérték egyenlő.
+	\item Ha minden ismérvértékhez hozzáadjuk ugyanazt a valós számot, a szórás változatlan marad.
+	\item Ha minden ismérvértéket megszorozzuk ugyanazzal az a valós számmal, a szórás az a szám abszolútértékével szorzódik.
+\end{itemize}
+
 (7) Definiálja a konfidencia-intervallum fogalmát (3x)
+
+A konfidenciaintervallum a valószínűségi intervallum, az induktív statisztika eszköze: ha mintából becsülünk, sosem tudjuk a pontos értéket, a teljes sokaság felmérése igen drága dolog. A konfidenciaintervallum adott szignifikanciaszinten: a becsült változó alsó és felső korlátja.
 
 (8) Definiálja az első- és a másodfajú hiba fogalmát
 
@@ -42,21 +55,74 @@ $$\displaystyle{P(B_k|A) = \frac{P(A|B_k)P(B_k)}{\displaystyle{\sum_i} P(A|B_i)P
 
 (12) írja fel az eloszás- és a sűrűségfüggvényeket karakterizáló tulajdonságokat! (3x)
 
+Eloszlásfüggvény:\\
+$F_X(z):=P(X<z)$. $F_X(z):\mathbb{R}\rightarrow\mathbb{R}$ függvény az X valószínűségi változó eloszlásfüggvénye.\\
+Tulajdonságai:
+
+\begin{itemize}
+	\item $0 \leq F_X(z) \leq 1$
+	\item $F_X(z)$ monoton nő
+	\item $\lim_{z \rightarrow \infty} F_X(z) = 1; \lim_{z \rightarrow -\infty} F_X(z) = 0$
+	\item $F_X(z)$ balról folytonos
+\end{itemize}
+
+Sűrűségfüggvény:\\
+Az X valószínűségi változó sűrűségfüggvénye $f(x) \leftrightarrow X$-re:
+
+$F_X(z) = \int_{-\infty}^z f(t) dt$
+
+Tulajdonságai:
+\begin{itemize}
+	\item $f \geq 0$
+	\item $\int_{-\infty}^{\infty} f(t) dt = 1$
+	\item Minden ilyen f integrálfüggvénye eloszlásfüggvény
+\end{itemize}
+
 (13) Legyen X pascal eloszlású valószínűségi változó. Számítsa ki az X várható értékét!
 
 (14) Mi a kapcsolat az X és Y valószínűségi változó függetlensége és együttes eloszlásfüggvénye között? (3x)
 
 (15) írja fel, az X diszkrét valószínűségi változó várható értkének definícióját! (2x)
 
-(16) Mondja ki Bayes tételét. (3x)
+(16) -
 
 (17) Vezesse le a polinomiális eloszlás koordinátái közötti korrelációra vonatkozó képletet.
 
 (18) Definiálja a Poisson folyamatot. (3x)
 
+Poisson folyamat: időben lejátszódó folyamatnál adott [a,b) intervallumba eső események száma $(X_{a,b})$ éppen $\lambda(b-a)$ paraméterő Poisson eloszlású, ha a folyamat
+
+\begin{itemize}
+	\item homogén: $X_{a,a+t}$ eloszlása csak t-tıl függ;
+	\item utóhatás nélküli: $X_{a,b}$ és $X_{b,c}$ függetlenek ha a<b<c;
+	\item nemelfajuló: $0<P (X_{a,b}=0)<1$.
+
+\end{itemize}
+
 (19) Mondja ki a nagy számok törvényének minél több változatát. (3x)
 
 (20) Vezesse le a Poisson eloszlás paraméterére a maximum likelihood becslést. (3x)
+
+Zyxon megoldasas:
+
+A likelihood fuggveny:
+
+$$L(\theta;\underline{x}) = f_{\theta}(\underline{x}) = \prod^n_{i=1} f_{\theta}(x_i)$$
+
+Ennek maximumhelye lesz a $\theta$ paraméter maximum likelihood becslése. A Poisson-eloszlás paramétere: $\overline{X}$
+
+Tankonyvar.hu-s megoldas:
+
+$$P(X_1 = k) = \frac{\lambda^k}{k!}e^{-\lambda}\quad k=0, 1, 2, ...$$
+A likelihood-fuggveny
+$$L(x_1, ..., x_n;\lambda)=\prod^n_{i=1}\frac{\lambda^{x_i}}{x_i!}e^{-\lambda}$$
+A loglikelihood-fuggveny
+$$l(x_1, ..., x_n;\lambda) = \sum^n_{i=1}(x_i log \lambda - \lambda - log x_i!)$$
+A maximumhelyet derivalassal hatarozzuk meg:
+$$0 = \frac{\theta l(x_1, ..., x_n;\lambda)}{\theta \lambda} = \frac{1}{\lambda} \sum^n_{i=1} x_i - n$$
+Innen
+$$\hat{\lambda} = \frac{1}{n} \sum^n_{i=1} X_i = \overline{X}$$
+A maximum-likelihood becsles.
 
 (21) Definiálja a lineáris modell hipotéziseit és adja meg a próbastatisztikát.
 
@@ -82,6 +148,8 @@ $$\displaystyle{P(B_k|A) = \frac{P(A|B_k)P(B_k)}{\displaystyle{\sum_i} P(A|B_i)P
 
 (32) Mondja ki a centrális határeloszlás tételt. (2x)
 
+151.-es kerdesben benne van a valasz.
+
 (33) Legyen $X$ olyan valószínűségi változó, amely a (0, 1) intervallumból veszi fel az értékeit. Eloszlásfüggvénye ott F(t) = t/2 ha $t \in (0, 1/2]$, és $F(t) = 3/4 + t/4$ ha $t \in (1/2, 1]$. Rajzoljuk fel X eloszlásfüggvényét és számítsuk ki a $P(X \leq 1/2)$, valamint a $P(1/4 \leq X \leq 3/4)$ és $P(X = 1/2)$ valószínűségeket!
 
 (34) Definiálja a teljes eseményrendszer fogalmát! (2x)
@@ -106,7 +174,29 @@ $$\displaystyle{P(B_k|A) = \frac{P(A|B_k)P(B_k)}{\displaystyle{\sum_i} P(A|B_i)P
 
 (44) Definiálja a kovarianciát és írja le tulajdonságait. (4x)
 
+$cov(X,Y) := E[(X-E(X))(Y-E(Y))]$
+
+Kiszámítása:
+$cov(X,Y) = E(XY)-E(X)E(Y)$
+
+Ha X és Y függetlenek $\rightarrow$ $cov(X,Y) = 0$, fordítva nem feltétlenül igaz
+
+A kovariancia szimmetrikus: $cov(X,Y) = cov(Y,X)$
+
+$cov(X,X) = D^2(X)$
+
 (45) Mondja ki a centrális határeloszlás tétel lokális változatát. (2x)
+
+Legyenek $X_1 , X_2 ,..., X_n ,...$ független, azonos eloszlású, abszolút folytonos valószínőségi változók. Tegyük fel, hogy $\sigma_2=D_2(X)$ véges $(m:=E(Xi))$ és hogy $f(x)$ korlátos. Tekintsük a standardizált összegüket:
+
+$$Z_n := \frac{X_1 + ... + X_n - nm}{\sqrt{n}\sigma}$$
+
+Ekkor $Z_n$ sűrűségfüggvénye konvergál a standard normális
+eloszlás sőrőségfüggvényéhez, azaz
+
+$$\lim_{n \rightarrow \infty} f_n(x) = \frac{1}{\sqrt{2\pi}} e^{- \frac{x^2}{2}}$$
+
+A konvergencia z-ben egyenletes.
 
 (46) Legyen X egyenletes a [0,1]-en. Adja meg $X^2$ eloszlását és várható értékét.
 
@@ -119,6 +209,8 @@ $$\displaystyle{P(B_k|A) = \frac{P(A|B_k)P(B_k)}{\displaystyle{\sum_i} P(A|B_i)P
 (50) Definiálja az autokorrelációs együtthatókat és adja meg becslésüket arra az esetre, amikor reziduálisokból számolunk! 
 
 (51) Definiálja a valószínűségi mező fogalmát! (2x)
+
+
 
 (52) Vezesse le, hogy a korrigált tapasztalati szórásnégyzet torzítatlan becslés a szórásnégyzetre. 
 
@@ -170,6 +262,10 @@ módszerét használva a $k(x) = 1$, ha $-1/2 < x < 1/2$ (és 0 különben) magf
 
 (73) Definiálja az előjelpróbát! Mik a kritikus értékek? (3x)
 
+Nemparaméteres próba, illeszkedésvizsgálat $\rightarrow$ adott eloszlású-e a minta?
+
+Az előjelpróba a különbségek előjelén alapul. $H_0$ esetén Binom(n; 1/2).
+
 (74) Adjon példát olyan $X_n$ valószínűségi változó-sorozatra, amely független tagú, de mégsem teljesül rá a centrális határeloszlástétel.
 
 (75) Legyen X egyenletes eloszlású a [-1, 1] intervallumon. Számítsa ki $X^2$ sűrűségfüggvényét.
@@ -194,24 +290,63 @@ módszerét használva a $k(x) = 1$, ha $-1/2 < x < 1/2$ (és 0 különben) magf
 
 (85) Hogyan tudunk inverz módszerrel véletlen számot generálni? (2x)
 
+Legyen X val. vált., F eloszlásfüggvénnyel,
+amely monoton növekedı és folytonos. Ekkor
+
+\begin{itemize}
+	\item F(X) egyenetes eloszlású [0, 1]-en.
+	\item Ha $U \sim U(0, 1)$ akkor $F^{-1}(U)$ eloszlásfüggvénye F.
+\end{itemize}
+
+Pl.:
+
+$$X \sim exp(\lambda) \rightarrow F(x) = 1-exp(-\lambda x) \rightarrow F^{-1}(x) = -\ln (1-x)/\lambda \rightarrow -\ln(1-U)/\lambda \sim exp(\lambda)$$
+
 (86) Legyen az X valószínűségi változó sűrűségfüggvénye $f(x) = x^2/9$, ha $0 < x < 3$ és $0$ különben. Adjuk meg $X$ eloszlásfüggvényének értékét az $1/2$ helyen. $E(1/X)=?$ Adjuk meg $sqrt{X}$ sűrűségfüggvényének értékét az $1/2$ helyen.
 
 (87) Számítsa ki annak a valószínűségét, hogy egy háromgyerekes családban azonos neműek a gyerekek! (Tegyük fel, hogy a fiúk és lányok szóletési valószínűsége is 0.5 és hogy az egyes születések függetlenek.)
 
 (88) Definiálja a várható érték fogalmát diszkrét valószínűségi változókra!
 
+A $p_i =P (X=x_i)$ eloszlással megadott valószínőségi változó várható értéke $E(X):= p_1x_1+ p_2x_2 +...,$ ha a sor abszolút konvergens.
+
 (89)  Legyen X egyenletes eloszlású a $[-2,2]$ intervallumon. Adja meg $(X - 2)(X + 2)$ sűrűségfüggvényét.
 
-(90) Mondja ki abszolút folytonos valószínűségi változók függetlenségének ekvivalens
-jellemzőit.
+(90) Mondja ki abszolút folytonos valószínűségi változók függetlenségének ekvivalens jellemzőit.
+
+Ha X koordinátái függetlenek, akkor definíció szerint:
+
+$F_X(z) = P(X_1<z_1, X_2<z_2, ..., X_d<z_d) = F_1(z_1)F_2(z_2)...F_n(z_n) \forall z \in \mathbb{R}^d$
 
 (91) Mondjon példát az egyenletes, az exponenciális és a normális eloszlás alkalmazására!
 
+Egyenletes eloszlás:\\
+Véletlengenerátorokban igyekeznek az egyenletes eloszlást egy adott intervallumon minél inkább közelíteni
+
+Exponenciális eloszlás:\\
+Előrejelzéseknél alkalmazzák: n adatpontos minta megfigyelése után egy ismeretlen exponenciális eloszlású forrásból meg tudjuk jósolni, hogy mi lesz a következő érték ugyanabból az ismeretlen exponenciális eloszlású adatforrásból
+
+Normális eloszlás:\\
+Mérési hibákra, mért ingadozásokra és olyan élettartam vizsgálatokra használjuk, ahol a készülékek, alkatrészek rendszeres kopással mennek tönkre. Bizonyos feltételek eseték a binomiális eloszlás közelítésére is használható.
+
 (92) Definiálja a bootstrap módszert.
+
+\begin{itemize}
+	\item Adott $X_n$-ből m elemű visszatevéses mintát veszünk (általában m=n) \quad $X^{*}_m = \{X^{*}_1,...,X^{*}_m\}$
+	\item $X_i^{*}$ közös eloszlása: $F_n = n^{-1} \sum^n_{i=1} \delta_{x_i}$
+	\item $T^{*}_{m,n} = t_m (X^{*}_m;F_n)$
+	\item Ismétlés $\rightarrow \hat{G}_{m,n}$
+	
+\end{itemize}
+
 
 (93) Mi a leíró statisztika feladata?
 
+Célja egy már rendelkezésre álló, valóságra vonatkozó adathalmaz összefoglalása, elemzése, egyszóval az információtömörítés.\\
+
 (94) Definiálja a kovarianciát!
+
+$$cov(X, Y) = E(XY) - EXEY$$
 
 (95) Mihez tart $P(X1+X2+ ... +Xn > 9n/2)$, ha $X1, X2, . . .$ független, a $[4,6]$ intervallumon
 egyenletes eloszlású valószínűségi változók és n tart végtelenhez?
@@ -242,6 +377,17 @@ várható érték, szórásnégyzet, annak a valószínűsége, hogy $X > 0.2$.
 
 (107) Definiálja a sztochasztikus konvergenciát! (2x)
 
+ minden $\mathcal{E}$, $\delta>0$-
+hoz megadható olyan $n_0$, hogy $n>n_0$ esetén $P(|X_n-X| \geq \mathcal{E}) \leq \delta$.
+
+Lemma
+
+$$X_n \rightarrow X m.m. \leftrightarrow \lim_{m \rightarrow \infty} P(\sup_{n \geq m} |X_n - X| > \mathcal{E}) = 0$$
+
+Köv.: A m.m. konvergenciából következik a
+sztochasztikus konvergencia.
+
+
 (108) Írja le a sűrűségfüggvény becslésére tanult eljárást.
 
 (109) Adja meg a legkisebb négyzetes becslést a lineáris modellben. Mik a tulajdonságai?
@@ -253,7 +399,14 @@ a második minta: 3,8,15,25,61,200.
 
 (112) Definiálja az F-próbát és adja meg legfontosabb alkalmazásait. (2x)
 
+$$H_0: \sigma_1 = \sigma_2$$
+$$H_1: \sigma_1 \neq \sigma_2$$
+Probastatisztika
+$$F= \frac{(s_1^{*})^2}{(s_2^{*})^2} \stackrel{H_0 eseten}{\sim} F_{n-1,m-1}$$
+
 (113)  Hogyan generálhatunk véletlen számot Neumann módszerével?
+
+Legyen f(x) tetszőleges sűrűségfüggvény, $g(x)$ pedig olyan sűrűségfüggvény, amelyre $f(x) < Mg(x)$, valamely $M>1$ esetén és $g(x)$-ből könnyen tudunk mintát venni (tipikus példa az egyenletes eloszlás).
 
 (114) Töltse ki az alábbi táblázat hiányzó celláit úgy, hogy a peremeloszlások egyenletesek
 legyenek a megadott számokon! Függetlenek-e ezek a változók? Számolja ki az $E(X^2Y)$ várható értéket!
@@ -279,6 +432,14 @@ Az A és B események függetlenek, ha $P(A \cap B) = P(A)P(B)$.
 (117) Számítsa ki két kockadobás maximumának a várható értékét.
 
 (118) Definiálja az első- és másodfajú hiba fogalmát, valamint próbák konzisztenciáját.
+
+Első:\\
+Valamely nullhipotézis statisztikai próbával végzett vizsgálatában az a hiba, amelyet a nullhipotézis elutasítása jelent amikor az igaz. Valószínûsége az elsõfajú kockázat (alfa). 
+
+Másodfajú hiba\\
+Az a hibás döntés, hogy nem vetjük el a helytelen nullhipotézist abban az esetben, amikor az alternatív hipotézis igaz. A próba közvetlenül nem ellenõrzi, ezért ha a próba nem utasítja el a nullhipotézist, ez még nem jelenti azt, hogy a nullhipotézist megfelelõ statisztikai biztonsággal elfogadhatjuk. Valószínûsége a másodfajú kockázat (béta). 
+
+
 
 (119) Irja le a t-próba alkalmazását a párosított megfigyelések esetére.
 
@@ -325,7 +486,7 @@ Mikor alkalmazná ezt a próbát? (2x)
 \item Bootstrap
 \end{itemize}
 
-Az első eljárás is torzítatlan és szórásnégyzete $(E(g^2(X)) - I^2) / N$, amib[l kisebb szórás adódik.\\
+Az első eljárás is torzítatlan és szórásnégyzete $(E(g^2(X)) - I^2) / N$, amiből kisebb szórás adódik.\\
 Tovább is javítható, ha X az [a,b]-ra koncentrálódó f sűrűségfüggvényű eloszlásból származik:
 $$\int^b_a g(x)dx = \int^a_b \frac{g(x)}{f(x)} f(x)dx = E (\frac{g(X)}{f(X)})$$
 és ennek még kisebb a szórása, ha $f(X) \approx g(X)$\\
@@ -342,8 +503,34 @@ t_{n+m-2}$$
 
 (132) Vezesse le a normális eloszlás várható értékére a maximum likelihood becslést n mintaelem alapján!
 
+$$L(\mu, \sigma^2;x) 
+= \prod^n_{k=1} \frac{1}{\sqrt{2\pi \sigma^2}} 
+e^{\frac{(x_i-\mu)^2}{2\sigma^2}}
+=\left(\frac{1}{\sqrt{2\pi \sigma^2}}\right)^n 
+e^{-\frac{1}{2 \sigma^2}} \sum^n_{k=1} (x_i - \mu )^2$$
+
+$$\ln L(\mu, \sigma^2;x) = - \frac{n}{2} \ln 2\pi - \frac{n}{2} \ln \sigma^2 - \frac{1}{2\sigma^2} \sum^n_{k=1} (x_i - \mu)^2$$
+$$(\ln L(\mu,\sigma^2;x))^{'}_{\mu} = - \frac{1}{2\sigma^2}(-2)\sum^n_{k=1}(x_i - \mu)$$
+
+Átrendezve $(\ln L(\mu,\sigma^2;x))^{'}_{\mu} = 0$ egyenletet, kapjuk, hogy $\displaystyle{\hat{\mu} = \frac{\sum^n_{k=1} X_i}{n} = \overline{X}}$. Ez valóban maximum, mivel $(\ln L(\mu,\sigma^2;x))^{''}_{\mu} = -\frac{n}{\sigma^2} < 0$
+
 (133) Írja fel, az X diszkrét valószínűségi változó várható értékének definícióját és sorolja fel
 a várható érték legfontosabb tulajdonságait!
+
+Egy X valószínűségi változó várható értéke
+
+\begin{itemize}
+	\item diszkrét esetben
+		$$E(X) := \sum_k x_k P(X = x_k) = \sum_k x_k p_k$$
+		
+	\item folytonos esetben
+		$$E(X) := \int_{-\infty}^\infty xp(x)dx$$
+\end{itemize}
+
+Nem minden valószínűségi változónak van véges várható értéke\\
+Ha $E(X)$ véges, akkor az abszolút konvergencia miatt egyértelmű is.\\
+Ha $EX$ véges, akkor $E(aX+b)=aEX+b$\\
+Ha $EX$ és $EY$ véges, akkor $E(X+Y)=EX+EY$
 
 (134) Legyen $\Omega = {1, 2, 3, 4, 5, 6}$, $P(i) = 1/6 (1 \leq i \leq 6)$ és $A = {1, 2, 3}$. Adon meg olyan B
 eseményt, amire $0 < P(B) < 1$ és B és A függetlenek! Válaszát indokolja.
@@ -497,8 +684,7 @@ ahol $\Phi$ a standard normális eloszlás eloszlásfüggvénye.
 
 Az u és a t próba is normális eloszlású mintákra alkalmazható, mindegyik konzisztens és torzítatlan, az egyoldali próbák legerősebb próbák is. Ha $n \rightarrow \infty$ akkor a tpróba átmegy az u próbába
 
-(153) Tegyük fel, hogy a mintánk megfigyelt értékei: 0, 0, 2, 2 és azt is, hogy közelíthetőek 1 szórású normális eloszlással. Írjon fel 0.95 megbízhatóságú konfidencia intervallumot a
-várható értékre!
+(153) Tegyük fel, hogy a mintánk megfigyelt értékei: 0, 0, 2, 2 és azt is, hogy közelíthetőek 1 szórású normális eloszlással. Írjon fel 0.95 megbízhatóságú konfidencia intervallumot a várható értékre!
 
 (154) Definiálja a $\chi$-négyzet próbát és adja meg legfontosabb alkalmazásait.
 
