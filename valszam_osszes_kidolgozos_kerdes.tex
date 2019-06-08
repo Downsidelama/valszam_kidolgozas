@@ -154,23 +154,63 @@ A maximum-likelihood becsles.
 
 (34) Definiálja a teljes eseményrendszer fogalmát! (2x)
 
+Események $A_1, A_2, ...,$ sorozata teljes eseményrendszer, ha
+egymást páronként kizárják és egyesítésük $\Omega$.
+
 (35) Definiálja a folytonos eloszlásokra a várható érték fogalmát.
 
 (36) Mondja ki Bernstein tételét.
 
+Legyen $(X_1, X_2, ..., X_n)$ olyan, hogy $D^2(X_1) + D^2(X_2) ... + D^2(X_n) < kn$, valamint tegyük fel, hogy van olyan $h: N \rightarrow R_{+}$ függvény, melyre $|R(X_i, X_j)| \leq h(|i-j|)$ és $\frac{1}{n} \displaystyle{\sum^n_{i=1}} h(i) \rightarrow 0$ ekkor $(X_1 + ... + X_n) / n - (m_1 + m_2 + ... + m_n)/n \rightarrow 0$ sztohasztikusan.
+
 (37) Bizonyítsa be a Markov egyenlőtlenség általános alakját.
+
+77.-es kerdesben!
 
 (38) Definiálja a maximum-likelihood módszert.
 
+Azt a paraméterértéket keressük, ahol a likelihood függvény a legnagyobb értéket veszi fel (azaz diszkrét esetben az
+ismeretlen paraméter azon értéket keressük, amely mellett a bekövetkezett eredmény maximális valószínűségű): $\max_{\theta}L(\theta; x)$.
+
+Ez nyilván megegyezik azzal a paraméterértékkel, ahol a log-likelihood függvény veszi fel a legnagyobb
+értéket, azaz: $\max_{\theta} l(\theta; x)$.
+
+Amennyiben a függvény deriválható $\theta$ szerint, akkor a maximumot kereshetjük a szokásos módon, a deriváltak
+segítségével, azonban a feladatunkat jelentősen megnehezíti, hogy olyan n-szeres szorzatot kellene deriválni, amelyiknek minden tagjában ott van az a változó, ami szerint deriválnunk kellene. Ezért likelihood függvény helyett a log-likelihood függvény maximumhelyét keressük.
+
+Ha $\theta$ 1 dimenziós, akkor $\partial_\theta l(\theta, x) = 0$, míg ha $\theta = (\theta_1, ..., \theta_p)$ p dimenziós, akkor $\partial_{\theta_i} l(\theta, x) = 0$ megoldásából
+kapjuk a becslést. (A második deriváltak segítségével ellen ˝orizz¨uk, hogy valóban maximum.)
+
+
 (39) Definiálja a Wilcoxon próbált.
 
+Ez a próba olyan kísérleti helyzetekben alkalmazható, ahol a mintavétel a páros megfigyelésen alapul, ahol 2 összefüggő változóból mintavétel történik, úgy, hogy mindegyikből egy-egy jut egy megfigyelési egységbe.
+
+A próba feltételei:
+\begin{itemize}
+	\item Ordinális skálán mérhető folytonos valószínűségi változók esetén akkor alkalmazható,
+	\item ha a különbségek is ordinális skálán mérhetőek.
+	\item Erősen asszimmetrikus eloszlás esetén nem alkalmazható.
+\end{itemize}
+
 (40) Definiálja az autoregressziós és a mozgóátlag folyamatokat.
+
+$$??$$
 
 (41) Mit jelent a becsléses illeszkedésvizsgálat és hogyan alkalmazzuk rá a $\chi$-négyzet próbát?
 
 (42) Legyen X n-edrendű p paraméterű binomiális eloszlású valószínűségi változó. Számítsa ki az X várható értékét! 
 
-(43) Mondja ki a szita (Poincaré) formulát
+(43) Mondja ki a szita (Poincaré) formulát.
+
+Képlet az általános esetre:
+
+$$P(A_1 \cup A_2 \cup ... \cup A_n) = \sum^n_{i=1} (-1)^{i+1} S^{(n)}_i$$
+ahol
+$$S^{(n)}_i = \sum_{1 \leq j_1 < j_2 < ... < j_i \leq n} P(A_{j_1}, \cap A_{j_2} \cap ... \cap A_{j_i})$$
+
+az i tényezıs metszetek
+valószínőségeinek összege.
 
 (44) Definiálja a kovarianciát és írja le tulajdonságait. (4x)
 
@@ -201,6 +241,14 @@ A konvergencia z-ben egyenletes.
 (46) Legyen X egyenletes a [0,1]-en. Adja meg $X^2$ eloszlását és várható értékét.
 
 (47) Irja fel a Nadarajah módszer lényegét és szemléltesse grafikusan az eljárás motivációját! 
+
+Ha csak mért adataink vannak, közelítjük a
+feltételes várható értéket (hasonló a ParzenRosenblatt becsléshez).
+
+$$\hat{r}_n(x) = \frac{\displaystyle{\sum^n_{i=1} Y_ik \left(\frac{x - X_i}{h_n}\right)}}{\displaystyle{\sum^n_{i=1} k \left(\frac{x - X_i}{h_n}\right)}}$$
+
+A Parzen-Rosenblatt tétel feltételei esetén ez
+konzisztens becslése az E(Y|X) regressziónak.
 
 (48) Definiálja a 2 mintás t-próbát és vezesse le a próbastatisztika képletét! 
 
@@ -233,6 +281,15 @@ A konvergencia z-ben egyenletes.
 (61) Mondja ki abszolút folytonos valószínűségi változók függetlenségének ekvivalens jellemzőit.
 
 (62) Definiálja valószínűségi változók eloszlását.
+
+Mivel a gyakorlati problémáknál $\Omega$ nem
+mindig adható meg egyértelműen, és
+absztrakt halmazok helyett szívesebben
+dolgozunk a valós számokkal, a kulcsfogalom
+a valószínűségi változók eloszlása.\\
+Legyen B tetszőleges Borel halmaz.
+$Q_X(B):= P{\omega: X(\omega) \in B}$ valószínűséget ad
+meg R Borel halmazain. Ez az X eloszlása.\\
 
 (63) Mit jelent a valószínűség folytonossága?
 
@@ -274,7 +331,32 @@ Az előjelpróba a különbségek előjelén alapul. $H_0$ esetén Binom(n; 1/2)
 
 (77) Mondja ki és bizonyítsa is be a Markov egyenlotlegnséget.
 
+Legyen $g : \mathbb{R} \rightarrow \mathbb{R}$ monoton növő pozitív függvény, $X \geq 0$ valószínűségi változó, melyre $EX < \infty$ és $\mathcal{E} > 0$ tetszőleges. Ekkor
+
+$$P(X \geq \mathcal{E}) \leq \frac{E(g(X))}{g(\mathcal{E})}$$
+
+Spec., ha $g(x) = x$, akkor
+
+$$P(X \geq \mathcal{E}) \leq \frac{EX}{\mathcal{E}}$$
+
+Bizonyitas diszkret esetre
+
+$$E(X) = \sum_{i \in R_X} i*p_i = \sum_{i>0,i\in R_X} i*p_i \geq \sum_{i \geq a, i\in R_X} i*p_i \geq \sum_{i\geq a, i\in R_X} a*p_i = aP(X \geq a)$$
+
+Bizonyitas folytonos esetre
+
+$$E(X) = \int_{-\infty}^{\infty} yf_X(y)dy = \int_{0}^{\infty} yf_X(y)dy \geq \int_{a}^{\infty} yf_X(y)dy$$
+$$\int_{a}^{\infty}yf_X(y)dy \geq \int_{a}^{\infty} af_X(y)dy = a * P(X \geq a)$$
+
 (78) Hogyan alkalmazhatjuk a Kolmogorov-Szmirnov próbát véletlenszám-generátorok tesztelésére?
+
+A tapasztalati és az elméleti eloszlásfüggvény
+legnagyobb eltéréseit karakterizálja
+
+$$K_n^{+} = \sqrt{n} \max (F_n(x) - F(x)), \quad K_n^{-}=\sqrt{n} \max(F(x) - F_n(x))$$
+
+Táblázatból kiolvasható a keresett valószínűség\\
+A kis lokális eltéréseket nem mutatja ki
 
 (79) Definiálja a binomiális eloszlást, vezesse le a képletét és adja meg alkalmazási lehetőségeit!
 
@@ -358,6 +440,20 @@ módszerét használva a a $k(x) = 1$, ha $-1/2 < x < 1/2$ (és 0 különben) ma
 
 (98) Definiálja az egy-és kétmintás u-próbát.
 
+Egymintás:\\
+$H_0: m=m_0; H_1 m \neq m_0$. Ha ismert a szórás:
+$$u = \sqrt{n}\frac{\overline{x} - m_0}{\sigma}$$
+
+Ketmintas:
+\begin{itemize}
+	\item Első minta: n elemű, $\sigma_1$ szórású
+	\item Második minta: m elemű, $\sigma_2$ szórású
+\end{itemize}
+
+Ha ismert $\sigma$:
+
+$$u = \frac{\overline{X} - \overline{Y}}{\sqrt{\frac{\sigma^2_1}{n} + \frac{\sigma^2_2}{m}}}$$
+
 (99) Az alábbi minta: 0,0,1,1,2 alapján becsüljük torzítatlanul az alábbi paramétereket:
 várható érték, szórásnégyzet, annak a valószínűsége, hogy $X > 0.2$.
 
@@ -372,6 +468,8 @@ várható érték, szórásnégyzet, annak a valószínűsége, hogy $X > 0.2$.
 (104)  Definiálja a visszatevés nélküli mintavétel modelljét és adja meg a különböző selejtszámok valószínűségeit!
 
 (105) Mondja ki a Markov egyenlőtlenséget!
+
+77.-es kerdesben!
 
 (106) Vezesse le a valószínűségre a maximum likelihood becslést n mintaelem alapján!
 
@@ -389,6 +487,8 @@ sztochasztikus konvergencia.
 
 
 (108) Írja le a sűrűségfüggvény becslésére tanult eljárást.
+
+$$f_n(x) = \frac{1}{nh_n}\sum^n_{i=1}k\left( \frac{x-X_i}{h_n} \right)$$
 
 (109) Adja meg a legkisebb négyzetes becslést a lineáris modellben. Mik a tulajdonságai?
 
