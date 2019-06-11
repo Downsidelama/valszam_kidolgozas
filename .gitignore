@@ -1,0 +1,7 @@
+*.aux
+*.txt
+*.gz
+*.log
+*.pdf
+
+nppBackup/*

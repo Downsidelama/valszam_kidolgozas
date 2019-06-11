@@ -10,6 +10,8 @@
     top=1.0in,%
     bottom=1.0in%
 ]{geometry}%
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
 \renewcommand{\baselinestretch}{1.5}
 
 \begin{document}
@@ -928,5 +930,100 @@ szignifikanciáját vizsgáló t-próba statisztika értéke. A pontok helyére 
 < 2e - 16$ irandó
 
 
+(171) Mit várunk a következő kódrészlet eredményeként? Rajzolja fel és magyarázza is el, hogy
+mit látunk az ábrán!
+
+\begin{verbatim}
+boxplot(diak[,2] ~ diak[,4],ylab="kg",xlab="nem",main="Testsúly")
+\end{verbatim}
+
+Az ábráról leolvashatóak nemenként a súlyeloszlás kvartilisei és a részminták terjedelme
+
+\includegraphics{boxplot}
+
+(172) Irja rá az ábrára, hogy melyik tanult eloszláscsalád sűrűségfüggvényeit mutatják be és
+egészítse ki a jelmagyarázatot is.
+
+\includegraphics{fuggveny}
+
+ Normális eloszlások (0 várható értékkel) a folytonos a standard, a szaggatott 2 szórású
+(a sűrűségfüggvény képletét egybevetve az ábrával leolvasható)
+
+
+(173) Miért volt érdemes az alábbi módon alkalmazni a hist függvényt? Rajzolja fel a függvény eredményét! 
+
+\begin{verbatim}
+hist(diak[,7],xlab="jegy",ylab="gyakoriság",main="Analízis
+jegy",breaks=c(1:6)-1/2)
+\end{verbatim}
+
+Azért jó ez az intervallum-beosztás, mert így pontosan középre esnek a tényleges értékek
+és nem keletkeznek "üres" oszlopok, amik a default beállításnál előfordulhatnak.
+
+\includegraphics{histogram}
+
+(174)  Mit vizsgáltunk? Mit kaptunk eredményül? Mi p.v jelentése?
+
+\begin{verbatim}
+p.v=rep(0,times=365);atlb=p.v;atlk=p.v
+for (i in 1:365)
+{jan1b<-homb[365*r+i,1];jan1k<-homk[365*r+i,1]
+p.v[i]=t.test(jan1b,jan1k,paired=T,alternative="t")\$p.value
+atlb[i]=mean(jan1b);atlk[i]=mean(jan1k)}
+plot(p.v,type="l")
+\end{verbatim}
+
+p.v a p-értékek vektora az év napjaira. T-proba
+
+\includegraphics{pv}
+
+(175) Milyen görbe van az ábrán? Milyen valószínúségszámítási tulajdonságai vannak?
+
+\includegraphics{gorbe}
+
+ez standard normális eloszlás súrúségfüggvénye.
+
+
+(176) Mit vizsgáltunk? Mit ad meg a p? Egészítse ki a táblázatot a hiányzó értékekkel!
+
+\begin{verbatim}
+n<-4;j<-6; q<-c(1:n)/n
+h<-c(-Inf,qnorm(q)); mu<-mean(diak[,j])
+sig=sd(diak[,j]) ; h<-h*sig+...
+nu<-rep(0,times=n)
+for (i in 1:n)
+nu[i]<- sum((diak[,j]<h[i+1]) & (diak[,j]...h[i]))
+np<-sum(nu)*rep(1/n,times=n)
+c<-sum((nu-...)^2/np)
+p<-1-pchisq(c,n-3)
+\end{verbatim}
+
+Lineáris modellt illesztettünk a
+szeptemberi átlaghúmérsékletekre a nap sorszámának függvényében
+
+A p a p-értéket jelöli.
+
+Kiegészített változat:
+
+\begin{verbatim}
+n<-4;j<-6; q<-c(1:n)/n
+h<-c(-Inf,qnorm(q)); mu<-mean(diak[,j])
+sig=sd(diak[,j]) ; h<-h*sig+mu
+nu<-rep(0,times=n)
+for (i in 1:n)
+nu[i]<- sum((diak[,j]<h[i+1]) & (diak[,j]>=h[i]))
+np<-sum(nu)*rep(1/n,times=n)
+c<-sum((nu-np)^2/np)
+p<-1-pchisq(c,n-3)
+\end{verbatim}
+
+N jelentese a minták száma. $j$ a súly.
+
+
+(177) Milyen statisztikai fogalmat illusztrál az ábra? Milyen tulajdonságai vannak?
+
+\includegraphics[scale=1.0]{gorbe2}
+
+Ez standard normális eloszlású minta tapasztalati eloszlásfüggvénye.
 
 \end{document}
