@@ -534,6 +534,17 @@ A kis lokális eltéréseket nem mutatja ki
 
 \section{(79) Definiálja a binomiális eloszlást, vezesse le a képletét és adja meg alkalmazási lehetőségeit!}
 
+\begin{itemize}
+\item Visszatevéses mintavétel más realizációja:
+független kísérletek azonos körülmények
+között. $P(A) = p$ esemény, végezzünk n
+(rögzített számú) független kísérletet.
+\item X: az A bekövetkezésének gyakorisága (pontosan hányszor jött ki az A). X eloszlása binomiális (n,p).
+\item $X = X_1 + X_2 + \cdots + X_n$ ahol $X_i$ az i-edik kísérletnél
+az A esemény indikátora. Ezek az indikátorok függetlenek is!
+
+\end{itemize}
+
 \section{(80) Legyenek az adataink: 1,2,5,6. Számolja ki a mediánt és rajzolja fel a tapasztalati eloszlásfüggvényt!}
 
 \section{(81) Tegyük fel, hogy egy 10 fős csoportban mindenki kihúzza valakinek a nevét a karácsonyi ajándékozásnál. várható értékben hány ember húzta saját magát? Vezesse is le az eredményt!}
@@ -609,6 +620,8 @@ egyenletes eloszlású valószínűségi változók és n tart végtelenhez?}
 
 \section{(96) Vezesse le az exponenciális eloszlás várható értékére vonatkozó képletet!}
 
+$$E \xi = \int^{\infty}_0 x \cdot \lambda \cdot e^{-\lambda x} dx = [-x \cdot e^{-\lambda x}]^{\infty}_0 + \int^{\infty}_0 e^{-\lambda x} dx = \left[\frac{e^{-\lambda x}}{-\lambda} \right]^{\infty}_0 = \frac{1}{\lambda}$$
+
 \section{(97) Legyen az alábbi 3 megfigyelésünk az $(X, Y)$ párra. $(1;2)$ $(1.3;2.5)$ $(0.8;1.5)$. Nadarajah
 módszerét használva a a $k(x) = 1$, ha $-1/2 < x < 1/2$ (és 0 különben) magfüggvénnyel és a $h = 0.5$ ablakszélességgel, adjon becslést $Y$ közelítésére, ha $X = 1$.}
 
@@ -637,9 +650,18 @@ várható érték, szórásnégyzet, annak a valószínűsége, hogy $X > 0.2$.}
 
 \section{(102) Hogyan adhatjuk meg a megszámlálható valószínűségi mezőn a valószínűséget?}
 
+$$P(A) = P(\cup_{i:\omega_i \in A} \omega_i) = \sum_{i:\omega_i \in A} p_i$$
+
 \section{(103) Legyen X 5 várható értékű és 2 szórású normális eloszlású, Y pedig az X = 7 esemény indikátora. Számítsa ki Y várható értékét és szórását!}
 
 \section{(104)  Definiálja a visszatevés nélküli mintavétel modelljét és adja meg a különböző selejtszámok valószínűségeit!}
+
+N termék, melybıl M selejtes\\
+n elemő minta visszatevés nélkül\\
+A: pontosan k selejtes van a mintában
+(k=0,...,n)
+
+$$P(A) = \frac{{M \choose k}{{N - M} \choose {n - k}}}{{N \choose n}}$$
 
 \section{(105) Mondja ki a Markov egyenlőtlenséget!}
 
@@ -718,6 +740,15 @@ Az erőfv. 1-hez tart (minden $\theta \in \Theta_1-re$)
 
 
 \section{(119) Irja le a t-próba alkalmazását a párosított megfigyelések esetére.}
+
+Példa: Van-e különbség Budapest és Cegléd napi átlaghımérséklete között?$H_0: m_1=m_2$ a nullhipotézis. 
+
+Ha ugyanazon napokról van megfigyelésünk
+mindkét helyen: nem függetlenek a minták.
+Ekkor a párok tagjai közötti különbséget
+vizsgálva, az előző egymintás esetre
+vezethetı vissza a feladat. $H_0*: m=0 ,H_1^{*}:m\neq0$ az új hipotézisek. 
+
 
 \section{(120) Vajon van-e stacionárius megoldása az $X_n = 0.96 X_{n-1} + \epsilon_n$ rekurziónak? Válaszát
 indokolja!}
