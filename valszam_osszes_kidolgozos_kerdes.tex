@@ -438,9 +438,54 @@ $$E_{\theta}(T_n(\underline{X})) \rightarrow \theta$$
 
 \section{(55) Definiálja a t-próbát az egy- és kétmintás esetre is.}
 
+
+Egymintás
+$\sigma$ ismeretlen; Probastatisztika:
+
+$$T(X) = t = \frac{\overline{X} - m_0}{\frac{s^{*}_n}{\sqrt{n}}} \stackrel{H_0 eseten}{\sim} t_{n-1}$$
+
+Kritikus tartományok:
+
+$$\chi_k = \{X: |t| > t_{n-1,1-\alpha/2}\} \quad \chi_k = \{X: t > t_{n-1,1-\alpha}\} \quad \chi_k = \{X: t < t_{n-1, \alpha}\}$$
+
+Kétmintás
+
+Probastatisztika:
+
+$$\displaystyle{t = \sqrt{\frac{nm}{n+m}}\frac{\overline{X} - \overline{Y}}{\sqrt{\frac{(n-1)(s^*_1)^2 + (m-1)(s^*_2)^2}{n+m-2}}} \stackrel{H_0 eseten}{\sim}
+t_{n+m-2}}$$
+
 \section{(56) Definiálja a szekvenciális próbát (egyszerű hipotézisek esetére).}
 
+A valószínőséghányados n elemő mintából
+
+$$\displaystyle{V_n = \frac{\prod^n_{i=1} f_1(X_i)}{\prod^n_{i=1} f_0(X_i)}}$$
+
+\begin{itemize}
+\item Addig veszünk mintaelemeket, amíg $V_n \geq B$ vagy $V_n \leq A$ nem teljesül\\
+Tehát az algoritmus:
+\item $V_n \geq B$: elutasítjuk $H_0$-t
+\item $V_n \leq A$ : elfogadjuk $H_0$-t.
+\item $B>Vn>A$: új mintaelemet veszünk.
+\end{itemize}
+
 \section{(57) Definiálja a korrelációs együtthatót és mondja ki legfontosabb tulajdonságait.}
+
+A változók közötti lineáris kapcsolat erısségét mérı
+mennyiség a korrelációs együttható: 
+
+$$R(X, Y) = \frac{cov(X,Y)}{D(X)D(Y)}$$
+
+Tulajdonságai:
+
+\begin{itemize}
+\item $R(X,Y)=0$, ha X és Y függetlenek (ez sem
+fordítható meg)
+\item Ez alapján definíció szerint legyen R(X,Y)=0, ha X
+vagy Y elfajult eloszlású.
+\item $R(X,aX+b)=1$, ha $a>0$, mert $cov(X,aX+b)=aD^2(X)$
+\end{itemize}
+
 
 \section{(58) Mikor nevezünk egy torzítatlan becslést hatásosabbnak egy másiknál?}
 
@@ -450,9 +495,18 @@ teljesül minden $\theta$ paraméterértékre.
 
 \section{(59) Definiálja idősorokra a trend és a periódus fogalmát.}
 
+Különböző, eltérő tartalmú
+komponensekre bontott idősor, additív vagy multiplikatív
+formában felépítve. Pl.: additív esetben
+
+$$Y_t = T_t + C_t + S_t + u_t$$
+
+ahol T, C és S a trend, a ciklikus és a periodikus komponens,
+u pedig a véletlen folyamat.
+
 \section{(60) Adjon példát olyan maximum likelihood becslésre, ami nem torzítatlan! (3x)}
 
-(61) -
+
 
 \section{(62) Definiálja valószínűségi változók eloszlását.}
 
@@ -467,6 +521,8 @@ meg R Borel halmazain. Ez az X eloszlása.\\
 
 \section{(63) Mit jelent a valószínűség folytonossága?}
 
+Ha $A_i \in \mathcal{A} (i = 1,2,\cdots)$ és $A_1 \supseteqq A_2 \supseteqq \cdots$ akkor az $\displaystyle{A = \cap^{\infty}_{i=1}A_i}$ jelöléssel $\lim_{n \rightarrow \infty} P(A_n)=P(A)$
+
 \section{(64) Definiálja n valószínűségi változó függetlenségét.}
 
  Az $X_1,...,X_n$ valószínűségi változók függetlenek, ha az $\mathscr{F}_{X1}, \mathscr{F}_{X2} ,...,\mathscr{F}_{X_n}$ generált $\sigma$-algebrák függetlenek.
@@ -478,7 +534,18 @@ A valószínűségi változó definíciójából adódóan $\{\omega:X(\omega)= 
 
 \section{(66) Definiálja a t eloszlást!}
 
+Definíció:  Az X  valószínűségi változót $n$ szabadságfokú Student eloszlásúnak nevezzük, ha sűrűségfüggvénye:
+
+$$f(x) = \frac{\Gamma \left(\frac{n+1}{2}\right)}{\sqrt{\pi} \sqrt{n \Gamma} \left(\frac{n}{2}\right) \left(1 + \frac{x^2}{n}\right)^{\frac{n+1}{2}}}$$
+
 \section{(67) Definiálja a gyenge konvergenciát!}
+
+$P_n \rightarrow P$ gyengén, ha minden $f: S \rightarrow R$ folytonos, korlátos függvényre
+
+$$\int fdP_n \rightarrow \int fdP$$
+
+Tulajdonságok: többek között azzal is
+ekvivalens, hogy $P_n(A) \rightarrow P(A)$ minden P-folytonossági halmazra.
 
 \section{(68) Irja fel annak a valószínűségét, hogy a 90/5-ös lottónál egy szelvénnyel játszva legalább 2 találatunk lesz!}
 
@@ -502,6 +569,13 @@ Az előjelpróba a különbségek előjelén alapul. $H_0$ esetén Binom(n; 1/2)
 \section{(75) Legyen X egyenletes eloszlású a [-1, 1] intervallumon. Számítsa ki $X^2$ sűrűségfüggvényét.}
 
 \section{(76) Definiálja a normális eloszlást és vezesse le a legfontosabb tulajdonságait.}
+
+Feltűnő tulajdonsága a normális eloszlásnak, hogy nem ferde, illetve az átlagra szimmetrikus. Ez azt jelenti, hogy a normális eloszlás átlaga, mediánja és módusza egyenlő. A normális eloszlás alakját haranghoz szokás hasonlítani.
+
+$N(m, \sigma^2)$; Eloszlasfuggveny: visszavezetheto $\Phi$-re\\ Surusegfuggveny: $$\displaystyle{\frac{1}{\sqrt{2\pi} \sigma}e^{-\frac{(x-m)^2}{2\sigma^2}}}$$
+
+EX: m\\
+$D^2X: \sigma^2$
 
 \section{(77) Mondja ki és bizonyítsa is be a Markov egyenlotlegnséget.}
 
@@ -534,14 +608,17 @@ A kis lokális eltéréseket nem mutatja ki
 
 \section{(79) Definiálja a binomiális eloszlást, vezesse le a képletét és adja meg alkalmazási lehetőségeit!}
 
+\subsection{Levezetes}
+
+Amennyiben N úgy tart a végtelenhez, hogy közben $M/N \rightarrow p$ (ahol $p \in (0,1)$), akkor a hipergeometrikus eloszlás tart a binomiális eloszláshoz:
+
+$$\lim_{N \rightarrow \infty, N/M \rightarrow p} {M \choose k}{{N - M} \choose {n - k}}/{N \choose n} = {n \choose k}p^k(1-p)^{n-k}$$
+
+\subsection{Alkalmazas}
 \begin{itemize}
-\item Visszatevéses mintavétel más realizációja:
-független kísérletek azonos körülmények
-között. $P(A) = p$ esemény, végezzünk n
-(rögzített számú) független kísérletet.
-\item X: az A bekövetkezésének gyakorisága (pontosan hányszor jött ki az A). X eloszlása binomiális (n,p).
-\item $X = X_1 + X_2 + \cdots + X_n$ ahol $X_i$ az i-edik kísérletnél
-az A esemény indikátora. Ezek az indikátorok függetlenek is!
+\item Visszatevéses mintavétel más realizációja: független kísérletek azonos körülmények között. $P(A) = p$ esemény, végezzünk n(rögzített számú) független kísérletet.
+\item X: az A bekövetkezésének gyakorisága (pontosan hányszor jött ki az A). X eloszlása binomiális (n,p).
+\item $X = X_1 + X_2 + \cdots + X_n$ ahol $X_i$ az i-edik kísérletnél az A esemény indikátora. Ezek az indikátorok függetlenek is!
 
 \end{itemize}
 
